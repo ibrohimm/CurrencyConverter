@@ -18,6 +18,10 @@
 		6A7728022B8C4D1D00975220 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728012B8C4D1D00975220 /* HistoryView.swift */; };
 		6A7728082B8C50A200975220 /* HTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728072B8C50A200975220 /* HTTPClient.swift */; };
 		6A77280A2B8C50E100975220 /* URLSessionHTTPClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728092B8C50E100975220 /* URLSessionHTTPClient.swift */; };
+		6A77280E2B8C513E00975220 /* CurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A77280D2B8C513E00975220 /* CurrencyService.swift */; };
+		6A7728112B8C517300975220 /* CurrencyDataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728102B8C517300975220 /* CurrencyDataModel.swift */; };
+		6A7728132B8C51AF00975220 /* FreeCurrencyService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728122B8C51AF00975220 /* FreeCurrencyService.swift */; };
+		6A7728182B8C524700975220 /* CurrencyDataMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728172B8C524700975220 /* CurrencyDataMapper.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +57,10 @@
 		6A7728032B8C4E0B00975220 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		6A7728072B8C50A200975220 /* HTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPClient.swift; sourceTree = "<group>"; };
 		6A7728092B8C50E100975220 /* URLSessionHTTPClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSessionHTTPClient.swift; sourceTree = "<group>"; };
+		6A77280D2B8C513E00975220 /* CurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyService.swift; sourceTree = "<group>"; };
+		6A7728102B8C517300975220 /* CurrencyDataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDataModel.swift; sourceTree = "<group>"; };
+		6A7728122B8C51AF00975220 /* FreeCurrencyService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FreeCurrencyService.swift; sourceTree = "<group>"; };
+		6A7728172B8C524700975220 /* CurrencyDataMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDataMapper.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -106,6 +114,7 @@
 			children = (
 				6A7727F12B8C4C0900975220 /* App */,
 				6A7727F52B8C4C4B00975220 /* Modules */,
+				6A77280F2B8C516800975220 /* Models */,
 				6A7728042B8C505B00975220 /* Services */,
 				6A7727F22B8C4C1900975220 /* Generics */,
 				6A7727F02B8C4AC200975220 /* Resources */,
@@ -216,6 +225,10 @@
 			isa = PBXGroup;
 			children = (
 				6A7728062B8C508F00975220 /* HTTPClient */,
+				6A7728142B8C51DC00975220 /* Helper */,
+				6A77280D2B8C513E00975220 /* CurrencyService.swift */,
+				6A7728122B8C51AF00975220 /* FreeCurrencyService.swift */,
+				6A7728172B8C524700975220 /* CurrencyDataMapper.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -227,6 +240,21 @@
 				6A7728092B8C50E100975220 /* URLSessionHTTPClient.swift */,
 			);
 			path = HTTPClient;
+			sourceTree = "<group>";
+		};
+		6A77280F2B8C516800975220 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				6A7728102B8C517300975220 /* CurrencyDataModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		6A7728142B8C51DC00975220 /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helper;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,10 +387,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6A7728112B8C517300975220 /* CurrencyDataModel.swift in Sources */,
 				6A7728002B8C4D0D00975220 /* ConversionView.swift in Sources */,
 				6A7728082B8C50A200975220 /* HTTPClient.swift in Sources */,
+				6A7728182B8C524700975220 /* CurrencyDataMapper.swift in Sources */,
 				6A7728022B8C4D1D00975220 /* HistoryView.swift in Sources */,
+				6A7728132B8C51AF00975220 /* FreeCurrencyService.swift in Sources */,
 				6A7727FB2B8C4CBD00975220 /* TabBarView.swift in Sources */,
+				6A77280E2B8C513E00975220 /* CurrencyService.swift in Sources */,
 				6A7727A22B8B696800975220 /* CurrencyConverterApp.swift in Sources */,
 				6A77280A2B8C50E100975220 /* URLSessionHTTPClient.swift in Sources */,
 			);
