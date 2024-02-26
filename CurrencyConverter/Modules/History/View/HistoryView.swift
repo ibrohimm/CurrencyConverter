@@ -24,7 +24,7 @@ struct HistoryView: View {
                     List {
                         ForEach(viewModel.filteredItems.reversed()) { conversion in
                             NavigationLink {
-                                
+                                ConversionDetailView(viewModel: ConverionDetailViewModel(conversion: conversion))
                             } label: {
                                 HStack {
                                     Text("\(conversion.base.rawValue) / \(conversion.target.rawValue)")
