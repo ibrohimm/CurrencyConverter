@@ -24,6 +24,6 @@ final class CurrencyPair: Identifiable {
 
 extension CurrencyPair {
     static var placeholder: CurrencyPair {
-        CurrencyPair(base: .USD, target: .EUR, rate: 0.921214)
+        CurrencyPair(base: .USD, target: .EUR, rate: 0.92121)
     }
 }
