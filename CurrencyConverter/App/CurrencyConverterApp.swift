@@ -18,12 +18,12 @@ struct CurrencyConverterApp: App {
             TabBarView()
                 .environmentObject(currencyManager)
                 .onAppear {
-                    currencyManager.startRefreshRatesTimer(with: networkService, timeInterval: 60)
+                    currencyManager.startRefreshRatesTimer(with: networkService, timeInterval: 180)
                     currencyManager.getRates(with: networkService)
                     currencyManager.loadHistory()
                 }
-                .onChange(of: scenePhase) {
-                    if scenePhase == .background || scenePhase == .inactive {
+                .onChange(of: scenePhase) { oldValue, newValue in
+                    if newValue == .background || newValue == .inactive {
                         if !currencyManager.currencyRates.isEmpty {
                             currencyManager.saveRates()
                         }

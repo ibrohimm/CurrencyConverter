@@ -51,9 +51,14 @@ final class CurrencyStore: RatePersistable, ConversionPersistable {
     
     func saveRates(rates: [CurrencyPair]) throws {
         do {
-            try modelContext.delete(model: CurrencyPair.self)
-            rates.forEach { item in
-                modelContext.insert(item)
+            let items = try loadRates()
+            if let item = items.first {
+                if item.timestamp.addingTimeInterval(180) > Date() {
+                    try modelContext.delete(model: CurrencyPair.self)
+                    try updateRates(rates)
+                }
+            } else {
+                try updateRates(rates)
             }
         } catch {
             throw error
@@ -65,6 +70,12 @@ final class CurrencyStore: RatePersistable, ConversionPersistable {
             return try modelContext.fetch(FetchDescriptor<CurrencyPair>())
         } catch {
             throw error
+        }
+    }
+    
+    fileprivate func updateRates(_ rates: [CurrencyPair]) throws {
+        rates.forEach { item in
+            modelContext.insert(item)
         }
     }
 }

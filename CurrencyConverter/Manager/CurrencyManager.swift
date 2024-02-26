@@ -66,6 +66,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
     func convertAmount(with amount: Double, fromCurrency: CurrencyCode, toCurrency: CurrencyCode) {
         guard !currencyRates.isEmpty else {
             errorMessage = "No exchange rates available"
+//            do { try loadRates() } catch {}
             return
         }
         
@@ -81,7 +82,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
         do {
             let items = try currencyStore.loadConversionHistory().reversed()
             if let item = items.first {
-                lastCurrencyPair = CurrencyPair(base: item.base, target: item.target, rate: 1)
+                lastCurrencyPair = CurrencyPair(base: item.base, target: item.target, rate: 1, timestamp: item.timestamp)
             }
         } catch {
             setErrorMessage(with: "Failed to load last chosen currency pair", error)
@@ -116,13 +117,11 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
                 onMain {
                     self.currencyRates = model.data.map { (key, value) in
                         let targetCurrency = CurrencyCode(rawValue: key) ?? .USD
-                        return CurrencyPair(base: .USD, target: targetCurrency, rate: value)
+                        return CurrencyPair(base: .USD, target: targetCurrency, rate: value, timestamp: .now)
                     }
                 }
             case let .failure(error):
-                onMain {
-                    self.errorMessage = error.localizedDescription
-                }
+                setErrorMessage(with: "", error)
             }
         }
     }
