@@ -17,12 +17,10 @@ struct CurrencyConverterApp: App {
         WindowGroup {
             TabBarView()
                 .environmentObject(currencyManager)
-                .task {
-                    do {
-                        currencyManager.startRefreshRatesTimer(with: networkService, timeInterval: 60)
-                        currencyManager.getRates(with: networkService)
-                        try currencyManager.loadHistory()
-                    } catch {}
+                .onAppear {
+                    currencyManager.startRefreshRatesTimer(with: networkService, timeInterval: 60)
+                    currencyManager.getRates(with: networkService)
+                    currencyManager.loadHistory()
                 }
                 .onChange(of: scenePhase) {
                     if scenePhase == .background || scenePhase == .inactive {

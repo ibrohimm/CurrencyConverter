@@ -26,15 +26,9 @@ final class HistoryViewModel: ObservableObject {
     
     // MARK: -
     
-    func loadHistoryList() async throws {
-        try currencyManager.loadHistory()
-        if !currencyManager.historyList.isEmpty {
-            DispatchQueue.main.async { [weak self] in
-                guard let self = self else { return }
-                self.historyItems = currencyManager.historyList
-                self.updateFilteredItems()
-            }
-        }
+    func loadHistoryList() {
+        historyItems = currencyManager.loadHistory()
+        updateFilteredItems()
     }
     
     func toggleSortingOrder() {

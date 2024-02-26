@@ -39,11 +39,7 @@ struct HistoryView: View {
             .navigationTitle("Conversion History")
             .searchable(text: $viewModel.searchText)
             .onAppear {
-                Task {
-                    do {
-                        try await viewModel.loadHistoryList()
-                    } catch {}
-                }
+                viewModel.loadHistoryList()
             }
             .toolbar {
                 ToolbarItem {

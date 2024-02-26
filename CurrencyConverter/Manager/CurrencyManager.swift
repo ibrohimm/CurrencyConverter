@@ -48,10 +48,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
                 fetchAllRates(with: currencyService)
             }
         } catch {
-            onMain { [weak self] in
-                guard let self = self else { return }
-                self.errorMessage = error.localizedDescription
-            }
+            setErrorMessage(with: "", error)
         }
     }
     
@@ -60,10 +57,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
         do {
             try currencyStore.saveRates(rates: currencyRates)
         } catch {
-            onMain { [weak self] in
-                guard let self = self else { return }
-                self.errorMessage = "Failed to save exchange rates: " + error.localizedDescription
-            }
+            setErrorMessage(with: "Failed to save exchange rates", error)
         }
     }
     
@@ -76,7 +70,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
         }
         
         let rate = currencyRates.getCrossRate(base: fromCurrency, target: toCurrency)
-        guard rate > 0, amount > 0 else { return }
+        guard amount > 0 && rate > 0 else { return }
         convertedAmount = rate * amount
         
         let conversion = Conversion(base: fromCurrency, target: toCurrency, amount: amount, convertedAmount: convertedAmount, rate: rate, timestamp: .now)
@@ -90,24 +84,17 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
                 lastCurrencyPair = CurrencyPair(base: item.base, target: item.target, rate: 1)
             }
         } catch {
-            onMain { [weak self] in
-                guard let self = self else { return }
-                self.errorMessage = "Failed to load last chosen currency pair: " + error.localizedDescription
-            }
+            setErrorMessage(with: "Failed to load last chosen currency pair", error)
         }
     }
     
-    func loadHistory() throws {
+    @discardableResult
+    func loadHistory() -> [Conversion] {
         do {
-            let items = try currencyStore.loadConversionHistory()
-            onMain {
-                self.historyList = items
-            }
+            return try currencyStore.loadConversionHistory()
         } catch {
-            onMain { [weak self] in
-                guard let self = self else { return }
-                self.errorMessage = "Failed to load history list: " + error.localizedDescription
-            }
+            setErrorMessage(with: "Failed to load history list", error)
+            return []
         }
     }
     
@@ -148,6 +135,13 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
             }
         } catch {
             throw error
+        }
+    }
+    
+    fileprivate func setErrorMessage(with message: String, _ error: Error) {
+        onMain { [weak self] in
+            guard let self = self else { return }
+            self.errorMessage = message + ": " + error.localizedDescription
         }
     }
 }

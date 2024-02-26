@@ -16,6 +16,6 @@ protocol CurrencyDataManageable {
     
     func convertAmount(with amount: Double, fromCurrency: CurrencyCode, toCurrency: CurrencyCode)
     func loadLastCurrencyPair()
-    func loadHistory() throws
+    func loadHistory() -> [Conversion]
     func saveHistory()
 }
