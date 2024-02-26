@@ -48,7 +48,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
                 fetchAllRates(with: currencyService)
             }
         } catch {
-            setErrorMessage(with: "", error)
+            setErrorMessage(with: .unknown, error)
         }
     }
     
@@ -57,7 +57,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
         do {
             try currencyStore.saveRates(rates: currencyRates)
         } catch {
-            setErrorMessage(with: "Failed to save exchange rates", error)
+            setErrorMessage(with: CurrencyDataManagerError.failedToSaveCurrencyRates, error)
         }
     }
     
@@ -65,8 +65,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
     
     func convertAmount(with amount: Double, fromCurrency: CurrencyCode, toCurrency: CurrencyCode) {
         guard !currencyRates.isEmpty else {
-            errorMessage = "No exchange rates available"
-//            do { try loadRates() } catch {}
+            errorMessage = CurrencyDataManagerError.noCurrencyRatesAvailable.localizedDescription
             return
         }
         
@@ -85,7 +84,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
                 lastCurrencyPair = CurrencyPair(base: item.base, target: item.target, rate: 1, timestamp: item.timestamp)
             }
         } catch {
-            setErrorMessage(with: "Failed to load last chosen currency pair", error)
+            setErrorMessage(with: CurrencyDataManagerError.failedToLoadLastCurrencyPair, error)
         }
     }
     
@@ -94,7 +93,7 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
         do {
             return try currencyStore.loadConversionHistory()
         } catch {
-            setErrorMessage(with: "Failed to load history list", error)
+            setErrorMessage(with: CurrencyDataManagerError.failedToLoadHistory, error)
             return []
         }
     }
@@ -120,8 +119,8 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
                         return CurrencyPair(base: .USD, target: targetCurrency, rate: value, timestamp: .now)
                     }
                 }
-            case let .failure(error):
-                setErrorMessage(with: "", error)
+            case .failure(_):
+                setErrorMessage(with: CurrencyDataManagerError.noInternetConnection)
             }
         }
     }
@@ -133,14 +132,15 @@ final class CurrencyDataManager: CurrencyDataManageable, ObservableObject {
                 self.currencyRates = rates
             }
         } catch {
-            throw error
+            throw CurrencyDataManagerError.failedToLoadCurrencyRates
         }
     }
     
-    fileprivate func setErrorMessage(with message: String, _ error: Error) {
+    fileprivate func setErrorMessage(with message: CurrencyDataManagerError, _ error: Error? = nil) {
         onMain { [weak self] in
             guard let self = self else { return }
-            self.errorMessage = message + ": " + error.localizedDescription
+            let err = error?.localizedDescription ?? ""
+            self.errorMessage = message.localizedDescription + ": " + err
         }
     }
 }
