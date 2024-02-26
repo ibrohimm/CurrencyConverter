@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum CurrencyCode: String, CaseIterable, Identifiable {
+enum CurrencyCode: String, CaseIterable, Identifiable, Equatable, Codable {
     case CHF = "CHF"
     case CNY = "CNY"
     case EUR = "EUR"

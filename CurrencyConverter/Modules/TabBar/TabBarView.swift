@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct TabBarView: View {
+    @EnvironmentObject var currencyManager: CurrencyDataManager
+    
     var body: some View {
         TabView {
             ConversionView()
@@ -28,4 +30,5 @@ struct TabBarView: View {
 
 #Preview {
     TabBarView()
+        .environmentObject(CurrencyDataManager.shared)
 }

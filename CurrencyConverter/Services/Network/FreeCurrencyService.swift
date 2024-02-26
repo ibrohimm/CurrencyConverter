@@ -19,7 +19,7 @@ final class FreeCurrencyService: CurrencyService {
     
     public typealias Completion = CurrencyService.Completion
     
-    init(url: URL?, client: HTTPClient = URLSessionHTTPClient()) {
+    init(url: URL? = Endpoint.getCurrencyRatesURL, client: HTTPClient = URLSessionHTTPClient()) {
         self.url = url
         self.client = client
     }
