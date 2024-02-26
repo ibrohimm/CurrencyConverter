@@ -28,6 +28,10 @@
 		6A7728222B8C557900975220 /* ConversionPersistable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728212B8C557900975220 /* ConversionPersistable.swift */; };
 		6A7728242B8C558400975220 /* Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728232B8C558400975220 /* Conversion.swift */; };
 		6A7728262B8C561200975220 /* CurrencyStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728252B8C561200975220 /* CurrencyStore.swift */; };
+		6A7728292B8C577700975220 /* CurrencyDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728282B8C577700975220 /* CurrencyDataManager.swift */; };
+		6A77282B2B8C57FA00975220 /* CurrencyManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A77282A2B8C57FA00975220 /* CurrencyManager.swift */; };
+		6A77282D2B8C58CC00975220 /* GCDUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A77282C2B8C58CC00975220 /* GCDUtils.swift */; };
+		6A7728312B8C5A0100975220 /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6A7728302B8C5A0100975220 /* Array+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +77,10 @@
 		6A7728212B8C557900975220 /* ConversionPersistable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionPersistable.swift; sourceTree = "<group>"; };
 		6A7728232B8C558400975220 /* Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Conversion.swift; sourceTree = "<group>"; };
 		6A7728252B8C561200975220 /* CurrencyStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyStore.swift; sourceTree = "<group>"; };
+		6A7728282B8C577700975220 /* CurrencyDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyDataManager.swift; sourceTree = "<group>"; };
+		6A77282A2B8C57FA00975220 /* CurrencyManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencyManager.swift; sourceTree = "<group>"; };
+		6A77282C2B8C58CC00975220 /* GCDUtils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GCDUtils.swift; sourceTree = "<group>"; };
+		6A7728302B8C5A0100975220 /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -126,6 +134,7 @@
 			children = (
 				6A7727F12B8C4C0900975220 /* App */,
 				6A7727F52B8C4C4B00975220 /* Modules */,
+				6A7728272B8C570900975220 /* Manager */,
 				6A77280F2B8C516800975220 /* Models */,
 				6A7728042B8C505B00975220 /* Services */,
 				6A7727F22B8C4C1900975220 /* Generics */,
@@ -179,6 +188,8 @@
 		6A7727F22B8C4C1900975220 /* Generics */ = {
 			isa = PBXGroup;
 			children = (
+				6A77282F2B8C59F900975220 /* Extensions */,
+				6A77282E2B8C58D300975220 /* Utils */,
 			);
 			path = Generics;
 			sourceTree = "<group>";
@@ -289,6 +300,31 @@
 				6A7728232B8C558400975220 /* Conversion.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		6A7728272B8C570900975220 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				6A7728282B8C577700975220 /* CurrencyDataManager.swift */,
+				6A77282A2B8C57FA00975220 /* CurrencyManager.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		6A77282E2B8C58D300975220 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				6A77282C2B8C58CC00975220 /* GCDUtils.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		6A77282F2B8C59F900975220 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				6A7728302B8C5A0100975220 /* Array+Extensions.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -425,15 +461,19 @@
 				6A7728002B8C4D0D00975220 /* ConversionView.swift in Sources */,
 				6A7728082B8C50A200975220 /* HTTPClient.swift in Sources */,
 				6A7728182B8C524700975220 /* CurrencyDataMapper.swift in Sources */,
+				6A7728292B8C577700975220 /* CurrencyDataManager.swift in Sources */,
 				6A77281E2B8C54A600975220 /* CurrencyPair.swift in Sources */,
 				6A7728022B8C4D1D00975220 /* HistoryView.swift in Sources */,
 				6A7728262B8C561200975220 /* CurrencyStore.swift in Sources */,
 				6A7728242B8C558400975220 /* Conversion.swift in Sources */,
 				6A77281B2B8C547C00975220 /* RatePersistable.swift in Sources */,
+				6A77282B2B8C57FA00975220 /* CurrencyManager.swift in Sources */,
+				6A7728312B8C5A0100975220 /* Array+Extensions.swift in Sources */,
 				6A7728132B8C51AF00975220 /* FreeCurrencyService.swift in Sources */,
 				6A7727FB2B8C4CBD00975220 /* TabBarView.swift in Sources */,
 				6A77280E2B8C513E00975220 /* CurrencyService.swift in Sources */,
 				6A7728202B8C54B900975220 /* CurrencyCode.swift in Sources */,
+				6A77282D2B8C58CC00975220 /* GCDUtils.swift in Sources */,
 				6A7727A22B8B696800975220 /* CurrencyConverterApp.swift in Sources */,
 				6A7728222B8C557900975220 /* ConversionPersistable.swift in Sources */,
 				6A77280A2B8C50E100975220 /* URLSessionHTTPClient.swift in Sources */,
